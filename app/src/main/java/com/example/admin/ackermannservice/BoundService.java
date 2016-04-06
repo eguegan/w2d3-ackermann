@@ -39,14 +39,11 @@ public class BoundService extends Service {
     }
 
     public int Ack(int m, int n){
-        int x = 0;
-        if(m == 0)
-            x = n + 1;
-        if(m > 0 && n == 0)
-            x = Ack(m + 1, 1);
-        if(m > 0 && n > 0)
-            x = Ack(m - 1, Ack(m, n - 1));
-
-        return x;
+        if (m == 0) {
+            return n + 1;
+        } else if (m > 0 && n == 0) {
+            return Ack(m - 1, 1);
+        }
+        return Ack(m - 1, Ack(m, n - 1));
     }
 }
