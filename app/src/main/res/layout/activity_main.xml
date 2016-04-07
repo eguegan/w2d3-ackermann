@@ -32,5 +32,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Do Ackermann"
-        android:onClick="doAckermann"/>
+        android:onClick="doAck2"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/am_tv_result"/>
 </LinearLayout>

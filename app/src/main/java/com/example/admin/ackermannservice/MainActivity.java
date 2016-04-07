@@ -9,11 +9,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private BoundService mBoundService;
     private EditText mEditText1;
     private EditText mEditText2;
+    private TextView mTextViewResult;
     private boolean isBound = false;
 
     @Override
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         mEditText1 = (EditText) findViewById(R.id.am_ed_1);
         mEditText2 = (EditText) findViewById(R.id.am_ed_2);
+        mTextViewResult = (TextView) findViewById(R.id.am_tv_result);
 
         Intent intent = new Intent(this, BoundService.class);
         bindService(intent, mConnection, BIND_AUTO_CREATE);
@@ -32,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("TAG", "onServiceConnected: " + mBoundService.Ack(Integer.parseInt(mEditText1.getText().toString()), Integer.parseInt(mEditText2.getText().toString())));
 
+    }
+
+    public void doAck2(View v){
+        new AckAsync(mEditText1, mEditText2, mTextViewResult).execute();
     }
 
     private ServiceConnection mConnection = new ServiceConnection() {
